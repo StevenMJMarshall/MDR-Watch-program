@@ -16,7 +16,7 @@ module ::WatchCategory
       end
     end
 
-    reseller_category = Category.find_by_slug("resellers")
+    reseller_category = Category.find_by_slug("physiology-disease-injury-diagnosis")
     reseller_group = Group.find_by_name("resellers")
     return if reseller_category.nil? || reseller_group.nil?
 
@@ -30,7 +30,7 @@ end
 after_initialize do
   module ::WatchCategory
     class WatchCategoryJob < ::Jobs::Scheduled
-      every 1.day
+      every 1.minute
 
       def execute(args)
         WatchCategory.watch_category!
